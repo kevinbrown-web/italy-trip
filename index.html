@@ -766,9 +766,32 @@
   </div>
 </div>
 
+<!-- EXPORT / IMPORT BAR -->
+<div style="max-width:960px;margin:0 20px 20px;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--white);">
+  <div style="background:var(--ink);color:var(--white);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;">💾 Save &amp; Restore Your Data</div>
+      <div style="font-size:11px;opacity:0.6;margin-top:2px;">Export your data to a file to back it up or share with your wife. Import to load it back on any device.</div>
+    </div>
+  </div>
+  <div style="padding:20px 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+    <button onclick="exportData()" style="background:var(--ink);color:var(--white);border:none;border-radius:8px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;">
+      ⬇️ Export my trip data
+    </button>
+    <label style="background:var(--cream);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;">
+      ⬆️ Import trip data
+      <input type="file" id="import-file" accept=".json" style="display:none;" onchange="importData(event)">
+    </label>
+    <span id="import-status" style="font-size:12px;color:var(--ct);display:none;font-weight:500;">✅ Data imported successfully!</span>
+  </div>
+  <div style="padding:0 24px 16px;font-size:12px;color:var(--muted);line-height:1.6;">
+    <strong>How to use:</strong> Click <em>Export</em> to download a <code>italy-trip.json</code> file — save it to Google Drive, email it to your wife, or just keep it as a backup. Click <em>Import</em> to load that file back on any device and restore everything exactly as you left it.
+  </div>
+</div>
+
 <footer class="site-footer">
   <strong>Italy 2026 — Family Trip Planner</strong><br>
-  <span style="margin-top:6px;display:block;">Everything saves automatically in your browser. Open on any device using the same browser to see your saved info. 🇮🇹 Buon viaggio!</span>
+  <span style="margin-top:6px;display:block;">Data saves automatically in your browser. Use Export/Import above to back up or share your trip data. 🇮🇹 Buon viaggio!</span>
 </footer>
 
 <script>
@@ -836,6 +859,47 @@
     });
     document.getElementById('budget-total-display').textContent = '$' + total.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
     autoSave();
+  }
+
+  function exportData() {
+    try {
+      const raw = localStorage.getItem('italy2026v2');
+      if (!raw) {
+        alert("Nothing saved yet — fill in some trip info first, then export.");
+        return;
+      }
+      const blob = new Blob([raw], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'italy-trip-' + new Date().toISOString().slice(0,10) + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch(e) {
+      alert("Export failed. Try again.");
+    }
+  }
+
+  function importData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = JSON.parse(e.target.result);
+        localStorage.setItem('italy2026v2', JSON.stringify(data));
+        loadSaved();
+        const status = document.getElementById('import-status');
+        status.style.display = 'inline';
+        setTimeout(() => { status.style.display = 'none'; }, 4000);
+        event.target.value = '';
+      } catch(err) {
+        alert("Import failed — make sure you're using a valid italy-trip .json file.");
+      }
+    };
+    reader.readAsText(file);
   }
 
   window.addEventListener('load', loadSaved);
