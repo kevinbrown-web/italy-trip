@@ -202,23 +202,23 @@
     <div id="tab-flights" class="tab-pane active">
       <div class="form-section-title">Outbound Flight — Boston (BOS) → Milan (MXP)</div>
       <div class="form-grid">
-        <div class="form-group"><label>Airline</label><input type="text" id="f-airline-out" placeholder="e.g. Delta, Lufthansa" oninput="autoSave()"></div>
-        <div class="form-group"><label>Flight Number(s)</label><input type="text" id="f-num-out" placeholder="e.g. DL 407 / LH 2290" oninput="autoSave()"></div>
-        <div class="form-group"><label>Departure — Date & Time</label><input type="text" id="f-dep-out" placeholder="July 11 · 9:00 PM · BOS" oninput="autoSave()"></div>
-        <div class="form-group"><label>Arrival — Date & Time</label><input type="text" id="f-arr-out" placeholder="July 12 · 11:45 AM · MXP" oninput="autoSave()"></div>
-        <div class="form-group"><label>Confirmation #</label><input type="text" id="f-conf-out" placeholder="ABC123" oninput="autoSave()"></div>
-        <div class="form-group"><label>Total Cost</label><input type="text" id="f-cost-out" placeholder="$0.00" oninput="autoSave()"></div>
+        <div class="form-group"><label>Airline</label><input type="text" id="f-airline-out" value="Delta Air Lines" oninput="autoSave()"></div>
+        <div class="form-group"><label>Flight Number(s)</label><input type="text" id="f-num-out" value="DL5808 (BOS→JFK) · DL286 (JFK→MXP)" oninput="autoSave()"></div>
+        <div class="form-group"><label>Departure — Date & Time</label><input type="text" id="f-dep-out" value="Jul 11 · 1:35 PM · BOS" oninput="autoSave()"></div>
+        <div class="form-group"><label>Arrival — Date & Time</label><input type="text" id="f-arr-out" value="Jul 12 · 6:45 AM · MXP" oninput="autoSave()"></div>
+        <div class="form-group"><label>Confirmation #</label><input type="text" id="f-conf-out" value="40-936641835 · PIN 9151" oninput="autoSave()"></div>
+        <div class="form-group"><label>Total Cost</label><input type="text" id="f-cost-out" value="$5,176.25 (5 travelers)" oninput="autoSave()"></div>
       </div>
       <div class="form-section-title" style="margin-top:24px;">Return Flight — Milan (MXP) → Boston (BOS)</div>
       <div class="form-grid">
-        <div class="form-group"><label>Airline</label><input type="text" id="f-airline-ret" placeholder="e.g. Delta, Lufthansa" oninput="autoSave()"></div>
-        <div class="form-group"><label>Flight Number(s)</label><input type="text" id="f-num-ret" placeholder="e.g. DL 408" oninput="autoSave()"></div>
-        <div class="form-group"><label>Departure — Date & Time</label><input type="text" id="f-dep-ret" placeholder="July 23 · 10:30 AM · MXP" oninput="autoSave()"></div>
-        <div class="form-group"><label>Arrival — Date & Time</label><input type="text" id="f-arr-ret" placeholder="July 23 · 3:15 PM · BOS" oninput="autoSave()"></div>
-        <div class="form-group"><label>Confirmation #</label><input type="text" id="f-conf-ret" placeholder="DEF456" oninput="autoSave()"></div>
-        <div class="form-group"><label>Total Cost</label><input type="text" id="f-cost-ret" placeholder="$0.00" oninput="autoSave()"></div>
+        <div class="form-group"><label>Airline</label><input type="text" id="f-airline-ret" value="Delta Air Lines" oninput="autoSave()"></div>
+        <div class="form-group"><label>Flight Number(s)</label><input type="text" id="f-num-ret" value="DL277 (MXP→BOS · Direct)" oninput="autoSave()"></div>
+        <div class="form-group"><label>Departure — Date & Time</label><input type="text" id="f-dep-ret" value="Jul 23 · 11:35 AM · MXP" oninput="autoSave()"></div>
+        <div class="form-group"><label>Arrival — Date & Time</label><input type="text" id="f-arr-ret" value="Jul 23 · 2:40 PM · BOS" oninput="autoSave()"></div>
+        <div class="form-group"><label>Confirmation #</label><input type="text" id="f-conf-ret" value="40-936641835 · PIN 9151" oninput="autoSave()"></div>
+        <div class="form-group"><label>Total Cost</label><input type="text" id="f-cost-ret" value="Included in $5,176.25 total" oninput="autoSave()"></div>
       </div>
-      <div style="margin-top:12px;font-size:12px;color:var(--muted);">💡 Flying in AND out of Milan (MXP) — same airport both ways, no open jaw needed. Train back Rome → Milan on Jul 22, fly home Jul 23.</div>
+      <div style="margin-top:12px;font-size:12px;color:var(--muted);">💡 Outbound has 1 stop at JFK (1h 25m layover). Return is direct MXP→BOS, 9h 05m. Booked via Booking.com.</div>
     </div>
 
     <div id="tab-passports" class="tab-pane">
@@ -686,8 +686,8 @@
 <div class="budget-section">
   <div class="budget-header"><h2>Budget Tracker</h2></div>
   <div class="budget-grid">
-    <div class="budget-cell"><div class="budget-cat">✈️ Flights (outbound)</div><div class="budget-est">No estimate yet</div><input class="budget-input" id="b-flight-out" placeholder="$0.00" oninput="updateTotal()"></div>
-    <div class="budget-cell"><div class="budget-cat">✈️ Flights (return)</div><div class="budget-est">No estimate yet</div><input class="budget-input" id="b-flight-ret" placeholder="$0.00" oninput="updateTotal()"></div>
+    <div class="budget-cell"><div class="budget-cat">✈️ Flights (outbound)</div><div class="budget-est">Delta DL5808/DL286</div><input class="budget-input" id="b-flight-out" value="$5176.25" oninput="updateTotal()"></div>
+    <div class="budget-cell"><div class="budget-cat">✈️ Flights (return)</div><div class="budget-est">Delta DL277 · included above</div><input class="budget-input" id="b-flight-ret" value="0" oninput="updateTotal()"></div>
     <div class="budget-cell"><div class="budget-cat">🚆 Trains (all legs)</div><div class="budget-est">Est. $600–1,000</div><input class="budget-input" id="b-trains" placeholder="$0.00" oninput="updateTotal()"></div>
     <div class="budget-cell"><div class="budget-cat">🏨 Milan arrival (2 nights)</div><div class="budget-est">Est. $300–600</div><input class="budget-input" id="b-milan" placeholder="$0.00" oninput="updateTotal()"></div>
     <div class="budget-cell"><div class="budget-cat">🏨 Venice (3 nights)</div><div class="budget-est">Est. $450–900</div><input class="budget-input" id="b-venice" placeholder="$0.00" oninput="updateTotal()"></div>
@@ -715,7 +715,7 @@
     <div style="padding:20px 24px;border-right:1px solid var(--border);">
       <div class="section-label" style="margin-bottom:14px;">📋 To Book</div>
       <div class="checklist">
-        <div class="check-item" id="ci-flights"><input type="checkbox" id="cb-flights" onchange="toggleCheck('ci-flights','cb-flights')"><label for="cb-flights">Flights — BOS → MXP → BOS (Jul 11 / Jul 23)</label></div>
+        <div class="check-item done" id="ci-flights"><input type="checkbox" id="cb-flights" checked onchange="toggleCheck('ci-flights','cb-flights')"><label for="cb-flights">Flights — BOS → MXP → BOS (Jul 11 / Jul 23) ✅ Booked · Delta · Conf: 40-936641835</label></div>
         <div class="check-item" id="ci-mil-hotel"><input type="checkbox" id="cb-mil-hotel" onchange="toggleCheck('ci-mil-hotel','cb-mil-hotel')"><label for="cb-mil-hotel">Milan hotel arrival (2 nights · Jul 12–13)</label></div>
         <div class="check-item" id="ci-venice-hotel"><input type="checkbox" id="cb-venice-hotel" onchange="toggleCheck('ci-venice-hotel','cb-venice-hotel')"><label for="cb-venice-hotel">Venice accommodation (3 nights · Jul 14–16)</label></div>
         <div class="check-item" id="ci-ct-vrbo"><input type="checkbox" id="cb-ct-vrbo" onchange="toggleCheck('ci-ct-vrbo','cb-ct-vrbo')"><label for="cb-ct-vrbo">Cinque Terre VRBO in Monterosso (3 nights · Jul 17–19)</label></div>
@@ -738,6 +738,9 @@
       <div class="section-label" style="margin-bottom:14px;">🎒 Before You Go</div>
       <div class="checklist">
         <div class="check-item" id="ci-passports"><input type="checkbox" id="cb-passports" onchange="toggleCheck('ci-passports','cb-passports')"><label for="cb-passports">All 5 passports valid through Jan 2027+</label></div>
+        <div class="check-item" id="ci-tsa"><input type="checkbox" id="cb-tsa" onchange="toggleCheck('ci-tsa','cb-tsa')"><label for="cb-tsa">Lisa — TSA PreCheck enrollment (tsaprecheck.gov · ~$78 · 5 yr)</label></div>
+        <div class="check-item" id="ci-idp"><input type="checkbox" id="cb-idp" onchange="toggleCheck('ci-idp','cb-idp')"><label for="cb-idp">International Driving Permit (IDP) — AAA · ~$20 · bring 2 passport photos</label></div>
+        <div class="check-item" id="ci-etias"><input type="checkbox" id="cb-etias" onchange="toggleCheck('ci-etias','cb-etias')"><label for="cb-etias">ETIAS authorization — check status closer to July (launching Q4 2026 · €7/person · apply at travel-europe.europa.eu)</label></div>
         <div class="check-item" id="ci-adapters"><input type="checkbox" id="cb-adapters" onchange="toggleCheck('ci-adapters','cb-adapters')"><label for="cb-adapters">European power adapters (Italy Type L)</label></div>
         <div class="check-item" id="ci-notify-bank"><input type="checkbox" id="cb-notify-bank" onchange="toggleCheck('ci-notify-bank','cb-notify-bank')"><label for="cb-notify-bank">Notify bank/credit cards of travel dates</label></div>
         <div class="check-item" id="ci-beach-shoes"><input type="checkbox" id="cb-beach-shoes" onchange="toggleCheck('ci-beach-shoes','cb-beach-shoes')"><label for="cb-beach-shoes">Beach/water shoes for Cinque Terre (x5)</label></div>
