@@ -105,6 +105,13 @@
   .check-item input[type="checkbox"] { width:16px; height:16px; accent-color:var(--gold); cursor:pointer; }
   .check-item label { cursor:pointer; color:var(--ink); }
   .check-item.done label { text-decoration:line-through; color:var(--muted); }
+  .car-rental-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:16px 24px; border-top:1px solid var(--border); }
+  @media (max-width:600px) { .car-rental-grid { grid-template-columns:1fr; } }
+  .car-rental-card { background:var(--cream); border-radius:10px; padding:12px 14px; border:1px solid var(--border); }
+  .car-rental-city { font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:4px; }
+  .car-rental-name { font-size:13px; font-weight:500; color:var(--ink); margin-bottom:2px; }
+  .car-rental-addr { font-size:11px; color:var(--muted); margin-bottom:4px; }
+  .car-rental-phone { font-size:12px; color:var(--venice); font-weight:500; }
   .site-footer { text-align:center; padding:32px; font-size:12px; color:var(--muted); border-top:1px solid var(--border); margin-top:16px; }
   .site-footer strong { color:var(--ink); }
   @media (max-width:500px) { .day-row,.train-inner { grid-template-columns:80px 36px 1fr; } .city-hero { height:160px; } .header-dates { flex-direction:column; gap:4px; } }
@@ -120,7 +127,7 @@
   </div>
 </header>
 <nav class="sticky-nav">
-  <a href="#trip-info">Trip Info</a><a href="#milan">Milan</a><a href="#venice">Venice</a><a href="#cinque-terre">Cinque Terre</a><a href="#rome">Rome</a><a href="#milan-return">Milan Return</a><a href="#budget">Budget</a><a href="#checklist">Checklist</a>
+  <a href="#trip-info">Trip Info</a><a href="#milan">Milan</a><a href="#venice">Venice</a><a href="#cinque-terre">Cinque Terre</a><a href="#rome">Rome</a><a href="#milan-return">Milan Return</a><a href="#budget">Budget</a><a href="#checklist">Checklist</a><a href="#emergency">&#128663; Emergency</a>
 </nav>
 <section id="trip-info">
 <div class="trip-panel">
@@ -130,6 +137,7 @@
     <button class="panel-tab" onclick="showTab('passports',this)">&#128706; Passports</button>
     <button class="panel-tab" onclick="showTab('insurance',this)">&#128737;&#65039; Insurance</button>
     <button class="panel-tab" onclick="showTab('concert',this)">&#127925; Concert</button>
+    <button class="panel-tab" onclick="showTab('trains',this)">&#128646; Trains</button>
     <button class="panel-tab" onclick="showTab('notes',this)">&#128221; Notes</button>
   </div>
   <div class="panel-content">
@@ -175,35 +183,78 @@
         <div class="form-group" style="grid-column:1/-1;"><label>Notes</label><textarea>Covers entire trip. Free eSIM &mdash; 1GB in 130 countries. Login: xcover.com &middot; PW: FX69!</textarea></div>
       </div>
       <div style="margin-top:12px;padding:12px 16px;background:#E8F5EF;border-radius:10px;border:1px solid #9FE1CB;">
-        <div style="font-size:10px;font-weight:500;text-transform:uppercase;color:#0F6E56;margin-bottom:8px;">&#128272; XCover: xcover.com &middot; PW: FX69! &middot; Emergency: (877) 243-4135</div>
+        <div style="font-size:11px;color:#0F6E56;">&#128272; xcover.com &middot; PW: FX69! &middot; Emergency: (877) 243-4135 &middot; Intl: (240) 330-1529</div>
       </div>
       <div class="form-section-title" style="margin-top:24px;">Policy 2 &mdash; Generali &middot; Milan Stay</div>
       <div class="form-grid">
         <div class="form-group"><label>Policy #</label><input type="text" value="26104Z3998"></div>
         <div class="form-group"><label>Premium</label><input type="text" value="$66.52 &middot; Paid Apr 14"></div>
-        <div class="form-group" style="grid-column:1/-1;"><label>Notes</label><textarea>Jul 12&ndash;14, 2026 (Milan only). Trip Cancel: $917.50 &middot; Delay: $600/day. Emergency: (877) 243-4135 &middot; Intl: (240) 330-1529</textarea></div>
+        <div class="form-group" style="grid-column:1/-1;"><label>Notes</label><textarea>Jul 12&ndash;14 (Milan only). Trip Cancel: $917.50 &middot; Delay: $600/day. Emergency: (877) 243-4135</textarea></div>
       </div>
-      <div class="form-section-title" style="margin-top:24px;">Policy 3 &mdash; Generali &middot; Rome Stay (via Airbnb)</div>
+      <div class="form-section-title" style="margin-top:24px;">Policy 3 &mdash; Generali &middot; Rome Stay</div>
       <div class="form-grid">
-        <div class="form-group"><label>Coverage</label><input type="text" value="Jul 20&ndash;22, 2026 (Rome only)"></div>
+        <div class="form-group"><label>Coverage</label><input type="text" value="Jul 20&ndash;22 (Rome only)"></div>
         <div class="form-group"><label>Premium</label><input type="text" value="$79.38 &middot; Paid Apr 23"></div>
       </div>
-      <div class="form-section-title" style="margin-top:24px;">Policy 4 &mdash; Allianz &middot; Sheraton (via Marriott)</div>
+      <div class="form-section-title" style="margin-top:24px;">Policy 4 &mdash; Allianz &middot; Sheraton</div>
       <div class="form-grid">
-        <div class="form-group"><label>Coverage</label><input type="text" value="Jul 22&ndash;23, 2026 (Sheraton only)"></div>
+        <div class="form-group"><label>Coverage</label><input type="text" value="Jul 22&ndash;23 (Sheraton only)"></div>
         <div class="form-group"><label>Premium</label><input type="text" value="$21.75 &middot; Emergency: 1-888-897-2661"></div>
       </div>
-      <div style="margin-top:8px;font-size:12px;color:var(--muted);">&#128161; Combined total: <strong>$595.05</strong> (XCover $427.40 + Generali Milan $66.52 + Generali Rome $79.38 + Allianz $21.75)</div>
+      <div style="margin-top:8px;font-size:12px;color:var(--muted);">&#128161; Combined total: <strong>$595.05</strong></div>
     </div>
     <div id="tab-concert" class="tab-pane">
-      <div class="form-section-title">&#127925; Vulfpeck &mdash; Milan &middot; July 13, 2026</div>
+      <div class="form-section-title">&#127925; Vulfpeck &mdash; Unaltrofestival 2026 &middot; Milan &middot; July 13</div>
       <div class="form-grid">
         <div class="form-group"><label>Venue</label><input type="text" value="Parco della Musica di Milano"></div>
         <div class="form-group"><label>Address</label><input type="text" value="Via Enzo Jannacci &middot; Segrate (~7km east of Milan)"></div>
-        <div class="form-group"><label>Show Time</label><input type="text" placeholder="Doors 7PM &middot; Show 8PM"></div>
-        <div class="form-group"><label>Tickets</label><input type="text" value="5 tickets &middot; Purchased"></div>
-        <div class="form-group" style="grid-column:1/-1;"><label>Transport Notes</label><textarea>Take M4 metro TO the concert &middot; Uber Black home after the show.</textarea></div>
+        <div class="form-group"><label>Show Time</label><input type="text" value="Monday Jul 13 &middot; 9:30 PM"></div>
+        <div class="form-group"><label>Tickets</label><input type="text" value="5 tickets &middot; Purchased &middot; Nominative (ID required at door)"></div>
+        <div class="form-group" style="grid-column:1/-1;"><label>Transport Notes</label><textarea>Take M4 metro TO the concert &middot; Uber Black home after the show.
+&#9888;&#65039; NOMINATIVE TICKETS: Each ticket has a name on it. The name must match the ID presented at the door or the ticket is invalid.</textarea></div>
       </div>
+    </div>
+    <div id="tab-trains" class="tab-pane">
+      <div class="form-section-title">All 6 Train Legs &mdash; All Booked &#10003;</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="background:var(--cream);border-radius:10px;padding:14px 16px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Leg 1 &middot; Jul 14</div>
+          <div style="font-size:13px;font-weight:500;">&#10003; Frecciarossa 9727 &middot; Milano Centrale 12:45 &rarr; Venezia S. Lucia 15:12</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">FrecciaFAMILY Premium &middot; Coach 4 &middot; Dom 1D &middot; Lisa 1C &middot; Savannah 2D &middot; Desmond 2C &middot; Jonas 1B</div>
+          <div style="font-size:12px;color:var(--muted);">Retrieval: <strong>1795726057</strong> &middot; CP: 421801 &middot; &euro;55</div>
+        </div>
+        <div style="background:var(--cream);border-radius:10px;padding:14px 16px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Leg 2 &middot; Jul 17</div>
+          <div style="font-size:13px;font-weight:500;">&#10003; Frecciarossa 9421 &middot; Venezia S. Lucia 13:26 &rarr; Firenze 15:39 / Firenze 15:53 &rarr; La Spezia 18:20</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Economy Business &middot; Coach 3 &middot; Dom 9B &middot; Lisa 9A &middot; Savannah 10A &middot; Desmond 10B &middot; Jonas 10D</div>
+          <div style="font-size:12px;color:var(--muted);">Retrieval: <strong>1802885358</strong> &middot; &euro;263.80</div>
+        </div>
+        <div style="background:var(--cream);border-radius:10px;padding:14px 16px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Leg 3 &middot; Jul 17</div>
+          <div style="font-size:13px;font-weight:500;">&#10003; Regionale 12240 &middot; La Spezia Centrale 19:12 &rarr; Monterosso 19:35</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">2nd Class Ordinaria &middot; No reserved seats</div>
+          <div style="font-size:12px;color:var(--muted);">Retrieval: <strong>1802894197</strong> &middot; &euro;32</div>
+        </div>
+        <div style="background:var(--cream);border-radius:10px;padding:14px 16px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Leg 4 &middot; Jul 20</div>
+          <div style="font-size:13px;font-weight:500;">&#10003; InterCity 657 &middot; Monterosso 11:07 &rarr; La Spezia Centrale 11:21</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Bimbi Gratis &middot; Coach 4 &middot; Dom 3A &middot; Lisa 4A &middot; Savannah 3B &middot; Desmond 4B &middot; Jonas 3C</div>
+          <div style="font-size:12px;color:var(--muted);">Retrieval: <strong>1802906114</strong> &middot; &euro;17</div>
+        </div>
+        <div style="background:var(--cream);border-radius:10px;padding:14px 16px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Leg 5 &middot; Jul 20</div>
+          <div style="font-size:13px;font-weight:500;">&#10003; Frecciabianca 8613 &middot; La Spezia Centrale 13:16 &rarr; Roma Termini 17:03</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">FrecciaFAMILY 1st Class &middot; Coach 1 &middot; Dom 15D &middot; Lisa 15C &middot; Savannah 16C &middot; Desmond 16D &middot; Jonas 16A</div>
+          <div style="font-size:12px;color:var(--muted);">Retrieval: <strong>1802914221</strong> &middot; &euro;80</div>
+        </div>
+        <div style="background:var(--cream);border-radius:10px;padding:14px 16px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Leg 6 &middot; Jul 22</div>
+          <div style="font-size:13px;font-weight:500;">&#10003; Frecciarossa 9630 &middot; Roma Termini 11:50 &rarr; Milano Centrale 14:58</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">FrecciaFAMILY Business &middot; Coach 2 &middot; Dom 9A &middot; Lisa 9B &middot; Savannah 10B &middot; Desmond 10A &middot; Jonas 10D</div>
+          <div style="font-size:12px;color:var(--muted);">Retrieval: <strong>1802921095</strong> &middot; &euro;129</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:12px;color:var(--muted);">&#128161; Total trains: <strong>&euro;576.80</strong> &middot; Always have Trenitalia app or retrieval codes ready. Validate tickets before boarding where required.</div>
     </div>
     <div id="tab-notes" class="tab-pane">
       <div class="form-section-title">General Notes</div>
@@ -217,11 +268,11 @@
 <section id="milan">
 <div class="city-section">
   <div class="city-hero" style="background-image:url('https://images.unsplash.com/photo-1600981935169-c19a3f6a2f6b?w=1200&q=70');"><div class="city-hero-overlay"></div><div class="city-hero-text"><div class="city-accent" style="background:var(--milan);"></div><h2>Milan</h2><div class="city-dates">July 12&ndash;13 &middot; 2 nights &middot; &#127925; Vulfpeck Jul 13</div></div></div>
-  <div class="accom-inline"><span class="accom-label-sm">&#127968; Accommodation</span><span class="accom-value">&#10003; Otto Novembre, 3 &mdash; Spacious and Elegant with a View &middot; <em>Porta Venezia, Milan</em></span><button class="edit-btn" onclick="toggleEdit('mil')">Edit</button></div>
+  <div class="accom-inline"><span class="accom-label-sm">&#127968; Accommodation</span><span class="accom-value">&#10003; <a href="https://www.vrbo.com/11774694" target="_blank" style="color:var(--milan);font-weight:500;">Otto Novembre, 3 &mdash; Spacious and Elegant with a View</a> &middot; <em>Porta Venezia, Milan</em></span><button class="edit-btn" onclick="toggleEdit('mil')">Edit</button></div>
   <div id="accom-edit-mil" class="accom-edit">
     <div class="form-grid">
-      <div class="form-group"><label>Property Name</label><input type="text" id="mil-name" value="Otto Novembre, 3 &mdash; Spacious and Elegant with a View"></div>
-      <div class="form-group"><label>Address</label><input type="text" id="mil-addr" value="Piazza Otto Novembre, 3, Milano 20129"></div>
+      <div class="form-group"><label>Property Name</label><input type="text" value="Otto Novembre, 3 &mdash; Spacious and Elegant with a View"></div>
+      <div class="form-group"><label>Address</label><input type="text" value="Piazza Otto Novembre, 3, Milano 20129"></div>
       <div class="form-group"><label>Reservation #</label><input type="text" value="KB1776194797 &middot; Property ID: 11774694"></div>
       <div class="form-group"><label>Total Cost</label><input type="text" value="&euro;780.06 &middot; Paid Apr 14, 2026"></div>
     </div>
@@ -233,9 +284,9 @@
     <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128203; Reservation</div><div style="font-size:13px;font-weight:500;">KB1776194797</div><div style="font-size:12px;color:var(--muted);">&euro;780.06 &middot; Paid &#10003;</div><div style="font-size:12px;color:var(--ct);font-weight:500;margin-top:4px;">Free cancel until Jun 28</div></div>
   </div>
   <div class="day-rows">
-    <div class="day-row"><div class="day-date-cell">Jul 12<div class="day-dow">Sunday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Arrive Milan from Boston &middot; check in &middot; rest &middot; Duomo area evening walk</div></div>
+    <div class="day-row"><div class="day-date-cell">Jul 12<div class="day-dow">Sunday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Arrive Milan from Boston &middot; Uber from MXP &middot; check in &middot; rest &middot; Duomo area evening walk</div></div>
     <div class="day-row night-row"><div class="day-date-cell">Jul 12<div class="day-dow">Sunday</div></div><div class="day-icon">&#127769;</div><div class="day-detail">Sleep in Milan &mdash; night 1 of 2</div></div>
-    <div class="day-row"><div class="day-date-cell">Jul 13<div class="day-dow">Monday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Duomo rooftop &middot; Sforza Castle &middot; Galleria &middot; dinner &middot; <span class="concert-tag">&#127925; Vulfpeck tonight</span></div></div>
+    <div class="day-row"><div class="day-date-cell">Jul 13<div class="day-dow">Monday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Duomo rooftop &middot; Sforza Castle &middot; Galleria &middot; dinner &middot; <span class="concert-tag">&#127925; Vulfpeck 9:30 PM</span></div></div>
     <div class="day-row night-row"><div class="day-date-cell">Jul 13<div class="day-dow">Monday</div></div><div class="day-icon">&#127769;</div><div class="day-detail">Sleep in Milan &mdash; night 2 of 2</div></div>
   </div>
   <div class="two-col-section">
@@ -243,12 +294,11 @@
       <div class="activity-item"><span class="a-icon">&#9962;</span><div style="flex:1"><div class="a-text"><strong>Duomo rooftop</strong> &mdash; Gargoyle spotting, insane views. Book ahead.</div></div><span class="a-price">~&euro;13/adult</span></div>
       <div class="activity-item"><span class="a-icon">&#127963;</span><div style="flex:1"><div class="a-text"><strong>Sforza Castle + Parco Sempione</strong> &mdash; Free courtyards, huge park with playgrounds.</div></div><span class="a-price">Free</span></div>
       <div class="activity-item"><span class="a-icon">&#128300;</span><div style="flex:1"><div class="a-text"><strong>Leonardo da Vinci Science Museum</strong> &mdash; Interactive machines, WWII sub.</div></div><span class="a-price">&euro;10/adult</span></div>
-      <div class="activity-item"><span class="a-icon">&#127920;</span><div style="flex:1"><div class="a-text"><strong>Civic Aquarium</strong> &mdash; 36 pools, 100+ species.</div></div><span class="a-price">&euro;5/adult</span></div>
     </div></div>
     <div class="section-block"><div class="section-label">&#127869;&#65039; Where to Eat</div><div class="resto-list">
-      <div class="resto-item"><div class="resto-meal">&#9728;&#65039; Breakfast</div><div class="resto-name">Any caf&eacute; near the Duomo</div><div class="resto-desc">Cornetto + cappuccino at the counter. Standing is cheaper than sitting.</div><div class="resto-price">~&euro;3&ndash;5/person</div></div>
-      <div class="resto-item"><div class="resto-meal">&#127773; Lunch</div><div class="resto-name">Gino Sorbillo</div><div class="resto-desc">Legendary Neapolitan pizza. Casual, kid-approved.</div><div class="resto-price">~&euro;10&ndash;14/pizza</div></div>
-      <div class="resto-item"><div class="resto-meal">&#127769; Pre-Concert Dinner</div><div class="resto-name">Paper Moon &middot; Via Bagutta 1</div><div class="resto-desc">Family-friendly, kids menu, quick service. Perfect before the show.</div><div class="resto-price">~&euro;15&ndash;20/person</div></div>
+      <div class="resto-item"><div class="resto-meal">&#9728;&#65039; Breakfast</div><div class="resto-name">Any caf&eacute; near the Duomo</div><div class="resto-desc">Cornetto + cappuccino at the counter.</div><div class="resto-price">~&euro;3&ndash;5/person</div></div>
+      <div class="resto-item"><div class="resto-meal">&#127773; Lunch</div><div class="resto-name">Gino Sorbillo</div><div class="resto-desc">Legendary Neapolitan pizza. Kid-approved.</div><div class="resto-price">~&euro;10&ndash;14/pizza</div></div>
+      <div class="resto-item"><div class="resto-meal">&#127769; Pre-Concert Dinner</div><div class="resto-name">Paper Moon &middot; Via Bagutta 1</div><div class="resto-desc">Family-friendly, kids menu, quick service.</div><div class="resto-price">~&euro;15&ndash;20/person</div></div>
     </div></div>
   </div>
   <div class="train-row">
@@ -256,21 +306,21 @@
       <div class="train-date-cell">Jul 14<div class="day-dow">Tuesday</div></div>
       <div class="train-icon-cell">&#128646;</div>
       <div class="train-detail-cell">
-        <span><strong>&#10003; Frecciarossa 9727</strong> &mdash; Milano Centrale 12:45 &rarr; Venezia S. Lucia 15:12 &middot; 2h 27min</span>
-        <span class="train-sub">FrecciaFAMILY Premium &middot; Coach 4 &middot; Retrieval: <strong>1795726057</strong> &middot; CP: 421801 &middot; &euro;55 total</span>
+        <span><strong>&#10003; Frecciarossa 9727</strong> &mdash; Milano Centrale 12:45 &rarr; Venezia S. Lucia 15:12</span>
+        <span class="train-sub">FrecciaFAMILY Premium &middot; Coach 4 &middot; Retrieval: <strong>1795726057</strong> &middot; &euro;55</span>
       </div>
     </div>
     <div style="padding:8px 16px 10px;font-size:11px;color:var(--muted);border-top:1px dashed var(--border);display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:8px;">
-      <div><div style="font-weight:600;color:var(--ink);">Dom</div><div>Seat 1D</div></div><div><div style="font-weight:600;color:var(--ink);">Lisa</div><div>Seat 1C</div></div><div><div style="font-weight:600;color:var(--ink);">Savannah</div><div>Seat 2D</div></div><div><div style="font-weight:600;color:var(--ink);">Desmond</div><div>Seat 2C</div></div><div><div style="font-weight:600;color:var(--ink);">Jonas</div><div>Seat 1B</div></div>
+      <div><div style="font-weight:600;color:var(--ink);">Dom</div><div>1D</div></div><div><div style="font-weight:600;color:var(--ink);">Lisa</div><div>1C</div></div><div><div style="font-weight:600;color:var(--ink);">Savannah</div><div>2D</div></div><div><div style="font-weight:600;color:var(--ink);">Desmond</div><div>2C</div></div><div><div style="font-weight:600;color:var(--ink);">Jonas</div><div>1B</div></div>
     </div>
-    <div class="train-tip">&#128161; Milano Centrale is one of Europe's most beautiful train stations &mdash; arrive 20 min early. Validate ticket at yellow machines before boarding.</div>
+    <div class="train-tip">&#128161; Milano Centrale is stunning &mdash; arrive 20 min early. Validate ticket at yellow machines before boarding.</div>
   </div>
 </div>
 </section>
 <section id="venice">
 <div class="city-section">
   <div class="city-hero" style="background-image:url('https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?w=1200&q=70');"><div class="city-hero-overlay"></div><div class="city-hero-text"><div class="city-accent" style="background:var(--venice);"></div><h2>Venice</h2><div class="city-dates">July 14&ndash;16 &middot; 3 nights</div></div></div>
-  <div class="accom-inline"><span class="accom-label-sm">&#127968; Accommodation</span><span class="accom-value">&#10003; San Marco View Terrace Apartment &mdash; R&amp;R &middot; <em>Palazzo, Venice</em></span><button class="edit-btn" onclick="toggleEdit('ven')">Edit</button></div>
+  <div class="accom-inline"><span class="accom-label-sm">&#127968; Accommodation</span><span class="accom-value">&#10003; <a href="https://www.rentrelax.com/guest-area/checkin/MzE3OTYwMzgjNjExYTU4ZWI5MQ/guests" target="_blank" style="color:var(--venice);font-weight:500;">San Marco View Terrace Apartment &mdash; R&amp;R</a> &middot; <em>Ramo San Zulian 605, Venice</em></span><button class="edit-btn" onclick="toggleEdit('ven')">Edit</button></div>
   <div id="accom-edit-ven" class="accom-edit">
     <div class="form-grid">
       <div class="form-group"><label>Property Name</label><input type="text" value="San Marco View Terrace Apartment R&amp;R"></div>
@@ -281,8 +331,8 @@
     <div class="form-group" style="margin-top:12px;"><label>Notes</label><textarea>Check-in: 3:00 PM &ndash; 7:00 PM. Check-out: 10:00 AM.&#10;Host: +39 380 681 6836 &middot; booking@rentrelax.it&#10;Guest portal: rentrelax.com &middot; PW: FR69!&#10;&#9888;&#65039; Contact host 1 week before arrival with flight # and arrival time.</textarea></div>
   </div>
   <div style="margin:0;padding:16px 24px;background:#EAF4FB;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
-    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128273; Key Pickup</div><div style="font-size:13px;font-weight:500;">Giugno SRL &mdash; Rent Relax</div><div style="font-size:12px;color:var(--muted);">Ramo San Zulian 605, Venice</div><div style="font-size:12px;color:var(--muted);">Check-in: 3:00 PM &ndash; 7:00 PM</div><div style="font-size:12px;color:var(--muted);">Check-out: 10:00 AM</div></div>
-    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128222; Host</div><div style="font-size:13px;font-weight:500;">+39 380 681 6836</div><div style="font-size:12px;color:var(--muted);">booking@rentrelax.it</div><div style="font-size:12px;color:var(--muted);">Guest portal PW: FR69!</div></div>
+    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128273; Key Pickup</div><div style="font-size:13px;font-weight:500;">Giugno SRL &mdash; Rent Relax</div><div style="font-size:12px;color:var(--muted);">Ramo San Zulian 605, Venice</div><div style="font-size:12px;color:var(--muted);">Check-in: 3:00&ndash;7:00 PM &middot; Out: 10:00 AM</div></div>
+    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128222; Host</div><div style="font-size:13px;font-weight:500;">+39 380 681 6836</div><div style="font-size:12px;color:var(--muted);">booking@rentrelax.it</div><div style="font-size:12px;color:var(--muted);">Portal PW: FR69!</div></div>
     <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128203; Booking</div><div style="font-size:13px;font-weight:500;">31796038</div><div style="font-size:12px;color:var(--muted);">&euro;1,450.34 total</div><div style="font-size:12px;color:#A03A2A;font-weight:500;margin-top:4px;">&#9888;&#65039; Call host 1 week before with flight # + arrival time</div></div>
   </div>
   <div style="margin:0;padding:14px 24px;background:#E0F0FA;border-bottom:1px solid var(--border);">
@@ -292,16 +342,14 @@
         <div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--venice);margin-bottom:6px;">&#10003; Arrival &mdash; Jul 14</div>
         <div style="font-size:13px;font-weight:500;">Pickup: 3:40 PM</div>
         <div style="font-size:12px;color:var(--muted);margin-top:2px;">Santa Lucia Station &rarr; Ramo San Zulian 605</div>
-        <div style="font-size:12px;color:var(--muted);">Train FR9727 arrives 15:12 &middot; 5 pax &middot; 6 bags</div>
-        <div style="font-size:12px;color:var(--muted);">&euro;95.00</div>
+        <div style="font-size:12px;color:var(--muted);">Train FR9727 arrives 15:12 &middot; 5 pax &middot; 6 bags &middot; &euro;95</div>
         <div style="font-size:11px;color:var(--ct);font-weight:700;margin-top:6px;">Ref: 40KHF</div>
       </div>
       <div style="background:white;border-radius:10px;padding:12px 14px;border:1px solid var(--border);">
         <div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--venice);margin-bottom:6px;">&#10003; Departure &mdash; Jul 17</div>
         <div style="font-size:13px;font-weight:500;">Pickup: 10:20 AM</div>
         <div style="font-size:12px;color:var(--muted);margin-top:2px;">Ramo San Zulian 605 &rarr; Santa Lucia Station</div>
-        <div style="font-size:12px;color:var(--muted);">5 pax &middot; 6 bags &middot; &euro;95.00</div>
-        <div style="font-size:12px;color:var(--muted);">Checkout 10:00 AM &middot; taxi departs 10:20 AM</div>
+        <div style="font-size:12px;color:var(--muted);">5 pax &middot; 6 bags &middot; &euro;95 &middot; Checkout 10:00 AM</div>
         <div style="font-size:11px;color:var(--ct);font-weight:700;margin-top:6px;">Ref: 84GQB</div>
       </div>
     </div>
@@ -317,13 +365,13 @@
   <div class="two-col-section">
     <div class="section-block"><div class="section-label">&#127904; Kid-Friendly Activities</div><div class="activity-list">
       <div class="activity-item"><span class="a-icon">&#128676;</span><div style="flex:1"><div class="a-text"><strong>Gondola ride</strong> &mdash; ~30 min, fits 5&ndash;6, magical for kids.</div></div><span class="a-price">~&euro;80/boat</span></div>
-      <div class="activity-item"><span class="a-icon">&#127917;</span><div style="flex:1"><div class="a-text"><strong>Mask-making workshop</strong> &mdash; Kids paint real Venetian carnival masks. Ca'Macana, Dorsoduro.</div></div><span class="a-price">&euro;20&ndash;30/person</span></div>
+      <div class="activity-item"><span class="a-icon">&#127917;</span><div style="flex:1"><div class="a-text"><strong>Mask-making workshop</strong> &mdash; Ca'Macana, Dorsoduro.</div></div><span class="a-price">&euro;20&ndash;30/person</span></div>
       <div class="activity-item"><span class="a-icon">&#127965;&#65039;</span><div style="flex:1"><div class="a-text"><strong>Murano glass-blowing</strong> &mdash; Vaporetto to island, watch artisans.</div></div><span class="a-price">Free + vaporetto</span></div>
       <div class="activity-item"><span class="a-icon">&#129430;</span><div style="flex:1"><div class="a-text"><strong>Natural History Museum</strong> &mdash; Dino skeletons, giant stuffed shark.</div></div><span class="a-price">~&euro;8/adult</span></div>
     </div></div>
     <div class="section-block"><div class="section-label">&#127869;&#65039; Where to Eat</div><div class="resto-list">
-      <div class="resto-item"><div class="resto-meal">&#9728;&#65039; Breakfast</div><div class="resto-name">Bar counter anywhere</div><div class="resto-desc">Cornetto + espresso at the bar. Cheaper standing.</div><div class="resto-price">~&euro;3&ndash;5/person</div></div>
-      <div class="resto-item"><div class="resto-meal">&#127773; Lunch</div><div class="resto-name">Rialto Market stalls</div><div class="resto-desc">Cicchetti near the Rialto &mdash; Venice's version of tapas.</div><div class="resto-price">~&euro;2&ndash;4/bite</div></div>
+      <div class="resto-item"><div class="resto-meal">&#9728;&#65039; Breakfast</div><div class="resto-name">Bar counter anywhere</div><div class="resto-desc">Cornetto + espresso. Cheaper standing.</div><div class="resto-price">~&euro;3&ndash;5/person</div></div>
+      <div class="resto-item"><div class="resto-meal">&#127773; Lunch</div><div class="resto-name">Rialto Market stalls</div><div class="resto-desc">Cicchetti &mdash; Venice's version of tapas.</div><div class="resto-price">~&euro;2&ndash;4/bite</div></div>
       <div class="resto-item"><div class="resto-meal">&#127769; Dinner</div><div class="resto-name">Trattoria da Romano</div><div class="resto-desc">Classic Venetian food, family-friendly.</div><div class="resto-price">~&euro;15&ndash;25/person</div></div>
     </div></div>
   </div>
@@ -332,18 +380,18 @@
       <div class="train-date-cell">Jul 17<div class="day-dow">Friday</div></div>
       <div class="train-icon-cell">&#128646;</div>
       <div class="train-detail-cell">
-        <span><strong>Frecciarossa + Regional</strong> &mdash; Venezia S. Lucia &rarr; Florence &rarr; La Spezia Centrale &middot; ~4.5&ndash;5 hrs</span>
-        <span class="train-sub">Water taxi 84GQB departs 10:20 AM &middot; 1 change in Florence &middot; <a href="https://www.trenitalia.com" target="_blank">trenitalia.com</a></span>
+        <span><strong>&#10003; Frecciarossa 9421</strong> &mdash; Venezia S. Lucia 13:26 &rarr; Firenze 15:39 &middot; Firenze 15:53 &rarr; La Spezia 18:20</span>
+        <span class="train-sub">Economy Business &middot; Coach 3 &middot; Retrieval: <strong>1802885358</strong> &middot; &euro;263.80 &middot; Then Reg 12240: La Spezia 19:12 &rarr; Monterosso 19:35 &middot; Retrieval: <strong>1802894197</strong></span>
       </div>
     </div>
-    <div class="train-tip">&#128161; Water taxi picks up at 10:20 AM &mdash; checkout is 10:00 AM so be ready. Consider a Florence lunch stop before the afternoon train to La Spezia. CT Express from La Spezia to Monterosso (~15 min).</div>
+    <div class="train-tip">&#128161; Water taxi 84GQB picks up at 10:20 AM. You have ~2.5 hrs at Santa Lucia station &mdash; eat lunch there before the 13:26 train.</div>
   </div>
 </div>
 </section>
 <section id="cinque-terre">
 <div class="city-section">
   <div class="city-hero" style="background-image:url('https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1200&q=70');"><div class="city-hero-overlay"></div><div class="city-hero-text"><div class="city-accent" style="background:var(--ct);"></div><h2>Cinque Terre</h2><div class="city-dates">July 17&ndash;19 &middot; 3 nights &middot; Monterosso al Mare</div></div></div>
-  <div class="accom-inline"><span class="accom-label-sm">&#127968; Airbnb</span><span class="accom-value">&#10003; Giaella Sea View Apartment with AC &middot; <em>Via Fegina 54, Monterosso al Mare</em></span><button class="edit-btn" onclick="toggleEdit('ct')">Edit</button></div>
+  <div class="accom-inline"><span class="accom-label-sm">&#127968; Airbnb</span><span class="accom-value">&#10003; <a href="https://www.airbnb.com/trips/v1" target="_blank" style="color:var(--ct);font-weight:500;">Giaella Sea View Apartment with AC</a> &middot; <em>Via Fegina 54, Monterosso al Mare</em></span><button class="edit-btn" onclick="toggleEdit('ct')">Edit</button></div>
   <div id="accom-edit-ct" class="accom-edit">
     <div class="form-grid">
       <div class="form-group"><label>Property Name</label><input type="text" value="Giaella Sea View Apartment with AC"></div>
@@ -358,9 +406,9 @@
     <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128222; Host</div><div style="font-size:13px;font-weight:500;">Cinque Terre Riviera Snc</div><div style="font-size:12px;color:var(--muted);">+39 351 785 8879</div></div>
     <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128203; Confirmation</div><div style="font-size:13px;font-weight:500;">HMMZAXART9</div><div style="font-size:12px;color:var(--muted);">$2,625.36 &middot; Superhost</div><div style="font-size:12px;color:#A03A2A;font-weight:500;margin-top:4px;">&#9888;&#65039; $1,339.17 due Jul 2 &middot; MC 6893</div></div>
   </div>
-  <div class="ct-note">&#127960;&#65039; <strong>Stay in Monterosso</strong> &mdash; flattest, best beach, playground. Vernazza is beautiful for day visits. Skip Corniglia with small kids (400 steps). Villages are 5&ndash;10 min apart by CT Express.</div>
+  <div class="ct-note">&#127960;&#65039; <strong>Stay in Monterosso</strong> &mdash; flattest, best beach, playground. Vernazza beautiful for day visits. Skip Corniglia with small kids (400 steps). Villages 5&ndash;10 min apart by CT Express.</div>
   <div class="day-rows">
-    <div class="day-row"><div class="day-date-cell">Jul 17<div class="day-dow">Friday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Arrive afternoon &middot; settle in &middot; waterfront walk &middot; first Ligurian dinner</div></div>
+    <div class="day-row"><div class="day-date-cell">Jul 17<div class="day-dow">Friday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Arrive Monterosso by CT Express &middot; check in &middot; waterfront walk &middot; first Ligurian dinner</div></div>
     <div class="day-row night-row"><div class="day-date-cell">Jul 17<div class="day-dow">Friday</div></div><div class="day-icon">&#127769;</div><div class="day-detail">Sleep in Cinque Terre &mdash; night 1 of 3</div></div>
     <div class="day-row"><div class="day-date-cell">Jul 18<div class="day-dow">Saturday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Village hop by CT Express &middot; swim at Monterosso beach &middot; explore Vernazza harbor</div></div>
     <div class="day-row night-row"><div class="day-date-cell">Jul 18<div class="day-dow">Saturday</div></div><div class="day-icon">&#127769;</div><div class="day-detail">Sleep in Cinque Terre &mdash; night 2 of 3</div></div>
@@ -369,10 +417,10 @@
   </div>
   <div class="two-col-section">
     <div class="section-block"><div class="section-label">&#127904; Kid-Friendly Activities</div><div class="activity-list">
-      <div class="activity-item"><span class="a-icon">&#128674;</span><div style="flex:1"><div class="a-text"><strong>Private boat tour + snorkeling</strong> &mdash; #1 family activity in CT. See all 5 villages from the sea.</div></div><span class="a-price">~&euro;50&ndash;80/person</span></div>
+      <div class="activity-item"><span class="a-icon">&#128674;</span><div style="flex:1"><div class="a-text"><strong>Private boat tour + snorkeling</strong> &mdash; #1 family activity in CT.</div></div><span class="a-price">~&euro;50&ndash;80/person</span></div>
       <div class="activity-item"><span class="a-icon">&#127807;</span><div style="flex:1"><div class="a-text"><strong>Pesto-making class</strong> &mdash; Hands-on, kids love it.</div></div><span class="a-price">~&euro;40&ndash;60/person</span></div>
-      <div class="activity-item"><span class="a-icon">&#127958;&#65039;</span><div style="flex:1"><div class="a-text"><strong>Monterosso beach</strong> &mdash; Best sandy beach in CT. Sun lounger rentals.</div></div><span class="a-price">~&euro;15/lounger</span></div>
-      <div class="activity-item"><span class="a-icon">&#128650;&#65039;</span><div style="flex:1"><div class="a-text"><strong>Village-hop by CT Express</strong> &mdash; Buy Cinque Terre Card at La Spezia (~&euro;18&ndash;20/adult).</div></div><span class="a-price">CT Card ~&euro;18&ndash;20</span></div>
+      <div class="activity-item"><span class="a-icon">&#127958;&#65039;</span><div style="flex:1"><div class="a-text"><strong>Monterosso beach</strong> &mdash; Best sandy beach in CT.</div></div><span class="a-price">~&euro;15/lounger</span></div>
+      <div class="activity-item"><span class="a-icon">&#128650;&#65039;</span><div style="flex:1"><div class="a-text"><strong>Village-hop by CT Express</strong> &mdash; Buy CT Card at La Spezia (~&euro;18&ndash;20/adult).</div></div><span class="a-price">CT Card ~&euro;18&ndash;20</span></div>
     </div></div>
     <div class="section-block"><div class="section-label">&#127869;&#65039; Where to Eat</div><div class="resto-list">
       <div class="resto-item"><div class="resto-meal">&#9728;&#65039; Breakfast</div><div class="resto-name">Local focacceria</div><div class="resto-desc">Liguria is the home of focaccia. Fresh every morning.</div><div class="resto-price">~&euro;2&ndash;4/person</div></div>
@@ -382,21 +430,21 @@
   </div>
   <div class="train-row">
     <div class="train-inner">
-      <div class="train-date-cell">Jul 20<div class="day-dow">Sunday</div></div>
+      <div class="train-date-cell">Jul 20<div class="day-dow">Monday</div></div>
       <div class="train-icon-cell">&#128646;</div>
       <div class="train-detail-cell">
-        <span><strong>Frecce high-speed</strong> &mdash; La Spezia Centrale &rarr; Roma Termini &middot; ~3h 30min direct</span>
-        <span class="train-sub">Local train to La Spezia first (~15 min) &middot; depart ~9&ndash;10 AM &middot; <a href="https://www.trenitalia.com" target="_blank">trenitalia.com</a></span>
+        <span><strong>&#10003; InterCity 657</strong> &mdash; Monterosso 11:07 &rarr; La Spezia 11:21 &middot; then <strong>Frecciabianca 8613</strong> &mdash; La Spezia 13:16 &rarr; Roma Termini 17:03</span>
+        <span class="train-sub">IC657 Retrieval: <strong>1802906114</strong> &middot; &euro;17 &middot;&middot;&middot; FB8613 Retrieval: <strong>1802914221</strong> &middot; &euro;80 &middot; FrecciaFAMILY 1st Class &middot; Coach 1</span>
       </div>
     </div>
-    <div class="train-tip">&#128161; Roma Termini is huge and chaotic &mdash; keep bags close and kids closer. Taxis outside main exit. Validate ticket before boarding.</div>
+    <div class="train-tip">&#128161; Checkout 10:00 AM &middot; IC657 departs 11:07 AM &mdash; walk to station is 2 min from Via Fegina. ~2 hrs in La Spezia Centrale before Rome train &mdash; eat lunch at the station.</div>
   </div>
 </div>
 </section>
 <section id="rome">
 <div class="city-section">
   <div class="city-hero" style="background-image:url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&q=70');"><div class="city-hero-overlay"></div><div class="city-hero-text"><div class="city-accent" style="background:var(--rome);"></div><h2>Rome</h2><div class="city-dates">July 20&ndash;21 &middot; 2 nights</div></div></div>
-  <div class="accom-inline"><span class="accom-label-sm">&#127968; Airbnb</span><span class="accom-value">&#10003; Penthouse in Trastevere with rooftop terrace &middot; <em>Via della Pelliccia 31a, Rome</em></span><button class="edit-btn" onclick="toggleEdit('rom')">Edit</button></div>
+  <div class="accom-inline"><span class="accom-label-sm">&#127968; Airbnb</span><span class="accom-value">&#10003; <a href="https://www.airbnb.com/trips/v1" target="_blank" style="color:var(--rome);font-weight:500;">Penthouse in Trastevere with rooftop terrace</a> &middot; <em>Via della Pelliccia 31a, Rome</em></span><button class="edit-btn" onclick="toggleEdit('rom')">Edit</button></div>
   <div id="accom-edit-rom" class="accom-edit">
     <div class="form-grid">
       <div class="form-group"><label>Property Name</label><input type="text" value="Penthouse in Trastevere with rooftop terrace"></div>
@@ -404,29 +452,29 @@
       <div class="form-group"><label>Confirmation #</label><input type="text" value="Check Airbnb app"></div>
       <div class="form-group"><label>Total Cost</label><input type="text" value="$1,349.38 (2 nights)"></div>
     </div>
-    <div class="form-group" style="margin-top:12px;"><label>Notes</label><textarea>Check-in: Mon Jul 20 after 3:00 PM &middot; Check-out: Wed Jul 22 by 10:00 AM&#10;Host: Marzia &middot; +39 335 715 6230 &middot; mamishome.it &middot; Lockbox self check-in&#10;&#9888;&#65039; No smoke alarm &mdash; bring portable detector!&#10;&#9888;&#65039; $1,270 due Jul 7 on Mastercard 6893&#10;Chiara (Marzia's daughter) does private tours: instagram.com/chiarastours</textarea></div>
+    <div class="form-group" style="margin-top:12px;"><label>Notes</label><textarea>Check-in: Mon Jul 20 after 3:00 PM &middot; Check-out: Wed Jul 22 by 10:00 AM&#10;Host: Marzia &middot; +39 335 715 6230 &middot; mamishome.it &middot; Lockbox self check-in&#10;&#9888;&#65039; No smoke alarm &mdash; bring portable detector!&#10;&#9888;&#65039; $1,270 due Jul 7 on Mastercard 6893&#10;Chiara (Marzia's daughter) private tours: instagram.com/chiarastours</textarea></div>
   </div>
   <div style="margin:0;padding:16px 24px;background:#FDF0EE;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
     <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128273; Check-in</div><div style="font-size:13px;font-weight:500;">Mon Jul 20 &middot; after 3:00 PM</div><div style="font-size:12px;color:var(--muted);">Check-out: Wed Jul 22 &middot; 10:00 AM</div><div style="font-size:12px;color:var(--ct);font-weight:500;margin-top:4px;">&#128272; Lockbox self check-in</div></div>
-    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128222; Host &mdash; Marzia</div><div style="font-size:13px;font-weight:500;">+39 335 715 6230</div><div style="font-size:12px;color:var(--muted);"><a href="http://mamishome.it" target="_blank" style="color:var(--rome);">mamishome.it</a></div><div style="font-size:12px;color:var(--muted);">Daughter Chiara: private tours</div></div>
-    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128203; Booking</div><div style="font-size:13px;font-weight:500;">$1,349.38 total</div><div style="font-size:12px;color:var(--muted);">$599.95/night &middot; 2 nights &middot; Trastevere</div><div style="font-size:12px;color:#A03A2A;font-weight:500;margin-top:4px;">&#9888;&#65039; $1,270 due Jul 7 &middot; &#9888;&#65039; No smoke alarm</div></div>
+    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128222; Host &mdash; Marzia</div><div style="font-size:13px;font-weight:500;">+39 335 715 6230</div><div style="font-size:12px;color:var(--muted);"><a href="http://mamishome.it" target="_blank" style="color:var(--rome);">mamishome.it</a> &middot; Daughter Chiara: private tours</div></div>
+    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128203; Booking</div><div style="font-size:13px;font-weight:500;">$1,349.38 total</div><div style="font-size:12px;color:var(--muted);">Trastevere &middot; Uber ~20 min from Termini</div><div style="font-size:12px;color:#A03A2A;font-weight:500;margin-top:4px;">&#9888;&#65039; $1,270 due Jul 7 &middot; &#9888;&#65039; No smoke alarm</div></div>
   </div>
   <div class="day-rows">
-    <div class="day-row"><div class="day-date-cell">Jul 20<div class="day-dow">Monday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Arrive early afternoon &middot; Colosseum exterior &middot; Piazza Navona &middot; Trevi Fountain coin toss</div></div>
+    <div class="day-row"><div class="day-date-cell">Jul 20<div class="day-dow">Monday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Arrive Roma Termini 17:03 &middot; Uber to Trastevere &middot; check in &middot; Piazza Navona &middot; Trevi Fountain</div></div>
     <div class="day-row night-row"><div class="day-date-cell">Jul 20<div class="day-dow">Monday</div></div><div class="day-icon">&#127769;</div><div class="day-detail">Sleep in Rome &mdash; night 1 of 2</div></div>
-    <div class="day-row"><div class="day-date-cell">Jul 21<div class="day-dow">Tuesday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Colosseum + Roman Forum tour &middot; Vatican + Sistine Chapel &middot; Gladiator School or pizza-making &middot; last Roman dinner</div></div>
+    <div class="day-row"><div class="day-date-cell">Jul 21<div class="day-dow">Tuesday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Colosseum + Roman Forum &middot; Vatican + Sistine Chapel &middot; Gladiator School or pizza-making &middot; last Roman dinner</div></div>
     <div class="day-row night-row"><div class="day-date-cell">Jul 21<div class="day-dow">Tuesday</div></div><div class="day-icon">&#127769;</div><div class="day-detail">Sleep in Rome &mdash; night 2 of 2</div></div>
   </div>
   <div class="two-col-section">
-    <div class="section-block"><div class="section-label">&#127904; Activities &mdash; Book EARLY, July sells out fast</div><div class="activity-list">
+    <div class="section-block"><div class="section-label">&#127904; Activities &mdash; Book EARLY</div><div class="activity-list">
       <div class="activity-item"><span class="a-icon">&#127967;</span><div style="flex:1"><div class="a-text"><strong>Colosseum + Roman Forum family tour</strong> &mdash; Skip-the-line. Kids under 18 free.</div></div><span class="a-price">~&euro;40&ndash;60/adult</span></div>
       <div class="activity-item"><span class="a-icon">&#127912;</span><div style="flex:1"><div class="a-text"><strong>Vatican + Sistine Chapel family tour</strong> &mdash; Game-based, skip-the-line.</div></div><span class="a-price">~&euro;35&ndash;55/adult</span></div>
-      <div class="activity-item"><span class="a-icon">&#9876;&#65039;</span><div style="flex:1"><div class="a-text"><strong>Gladiator School</strong> &mdash; Kids dress up and learn gladiator moves. #1 kid activity in Rome.</div></div><span class="a-price">~&euro;30&ndash;50/person</span></div>
-      <div class="activity-item"><span class="a-icon">&#127829;</span><div style="flex:1"><div class="a-text"><strong>Pizza-making class</strong> &mdash; Kids make their own pizza. ~1.5 hrs.</div></div><span class="a-price">~&euro;40&ndash;60/person</span></div>
+      <div class="activity-item"><span class="a-icon">&#9876;&#65039;</span><div style="flex:1"><div class="a-text"><strong>Gladiator School</strong> &mdash; #1 kid activity in Rome.</div></div><span class="a-price">~&euro;30&ndash;50/person</span></div>
+      <div class="activity-item"><span class="a-icon">&#127829;</span><div style="flex:1"><div class="a-text"><strong>Pizza-making class</strong> &mdash; Kids make their own pizza.</div></div><span class="a-price">~&euro;40&ndash;60/person</span></div>
     </div></div>
     <div class="section-block"><div class="section-label">&#127869;&#65039; Where to Eat</div><div class="resto-list">
-      <div class="resto-item"><div class="resto-meal">&#9728;&#65039; Breakfast</div><div class="resto-name">Bar San Calisto, Trastevere</div><div class="resto-desc">Local institution. Cheap, zero pretension, great pastries.</div><div class="resto-price">~&euro;3&ndash;5/person</div></div>
-      <div class="resto-item"><div class="resto-meal">&#127773; Lunch</div><div class="resto-name">Pizzarium (near Vatican)</div><div class="resto-desc">Rome's best pizza al taglio. Point and pay by weight.</div><div class="resto-price">~&euro;5&ndash;10/person</div></div>
+      <div class="resto-item"><div class="resto-meal">&#9728;&#65039; Breakfast</div><div class="resto-name">Bar San Calisto, Trastevere</div><div class="resto-desc">Local institution. Cheap, zero pretension.</div><div class="resto-price">~&euro;3&ndash;5/person</div></div>
+      <div class="resto-item"><div class="resto-meal">&#127773; Lunch</div><div class="resto-name">Pizzarium (near Vatican)</div><div class="resto-desc">Best pizza al taglio in Rome. Pay by weight.</div><div class="resto-price">~&euro;5&ndash;10/person</div></div>
       <div class="resto-item"><div class="resto-meal">&#127769; Dinner</div><div class="resto-name">Any trattoria in Trastevere</div><div class="resto-desc">Walk in anywhere. Lively, outdoor, family atmosphere.</div><div class="resto-price">~&euro;15&ndash;25/person</div></div>
     </div></div>
   </div>
@@ -435,11 +483,11 @@
       <div class="train-date-cell">Jul 22<div class="day-dow">Wednesday</div></div>
       <div class="train-icon-cell">&#128646;</div>
       <div class="train-detail-cell">
-        <span><strong>Frecciarossa</strong> &mdash; Roma Termini &rarr; Milano Centrale &middot; ~2h 45min direct</span>
-        <span class="train-sub">Morning departure &middot; arrive Milan midday &middot; <a href="https://www.trenitalia.com" target="_blank">trenitalia.com</a></span>
+        <span><strong>&#10003; Frecciarossa 9630</strong> &mdash; Roma Termini 11:50 &rarr; Milano Centrale 14:58 &middot; direct</span>
+        <span class="train-sub">FrecciaFAMILY Business &middot; Coach 2 &middot; Retrieval: <strong>1802921095</strong> &middot; &euro;129 &middot; Uber to Termini by 11:00 AM</span>
       </div>
     </div>
-    <div class="train-tip">&#128161; Sit on the left side going north for the best Tuscany views. Depart morning so you arrive Milan with time to relax before your early flight.</div>
+    <div class="train-tip">&#128161; Checkout 10:00 AM &middot; Uber to Termini ~20 min &middot; depart 11:50 AM &middot; arrive Milan 14:58. Sit left side going north for Tuscany views.</div>
   </div>
 </div>
 </section>
@@ -462,19 +510,19 @@
     <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128203; Confirmation</div><div style="font-size:13px;font-weight:500;">77118774</div><div style="font-size:12px;color:var(--muted);">&euro;281.00 &middot; Paid &#10003;</div><div style="font-size:12px;color:var(--muted);">2 Double Beds &middot; Large Deluxe</div></div>
   </div>
   <div class="day-rows">
-    <div class="day-row"><div class="day-date-cell">Jul 22<div class="day-dow">Wednesday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Arrive Milan from Rome &middot; check in &middot; easy afternoon &middot; last Italian dinner &middot; early to bed</div></div>
+    <div class="day-row"><div class="day-date-cell">Jul 22<div class="day-dow">Wednesday</div></div><div class="day-icon">&#9728;&#65039;</div><div class="day-detail">Arrive Milan from Rome 14:58 &middot; check in &middot; easy evening &middot; last Italian dinner &middot; early to bed</div></div>
     <div class="day-row night-row"><div class="day-date-cell">Jul 22<div class="day-dow">Wednesday</div></div><div class="day-icon">&#127769;</div><div class="day-detail">Sleep in Milan &mdash; final night in Italy</div></div>
-    <div class="day-row"><div class="day-date-cell">Jul 23<div class="day-dow">Thursday</div></div><div class="day-icon">&#9992;&#65039;</div><div class="day-detail">Transfer to MXP &middot; fly home to Boston &middot; Arrivederci Italia! &#127470;&#127481;</div></div>
+    <div class="day-row"><div class="day-date-cell">Jul 23<div class="day-dow">Thursday</div></div><div class="day-icon">&#9992;&#65039;</div><div class="day-detail">Transfer to MXP Terminal 1 &middot; DL277 11:35 AM &rarr; BOS 2:40 PM &middot; Arrivederci Italia! &#127470;&#127481;</div></div>
   </div>
-  <div style="padding:14px 24px;background:var(--cream);border-top:1px solid var(--border);font-size:12px;color:var(--muted);">&#128161; Allow at least 2.5 hrs before your flight for international check-in. Hotel is attached to Terminal 1 by a covered walkway &mdash; literally 2 minutes.</div>
+  <div style="padding:14px 24px;background:var(--cream);border-top:1px solid var(--border);font-size:12px;color:var(--muted);">&#128161; 2-min covered walk to Terminal 1. Allow 2.5 hrs before flight. Leave hotel by 9:00 AM.</div>
 </div>
 </section>
 <section id="budget">
 <div class="budget-section">
   <div class="budget-header"><h2>Budget Tracker</h2></div>
   <div class="budget-grid">
-    <div class="budget-cell"><div class="budget-cat">&#9992;&#65039; Flights</div><div class="budget-est">Delta DL5808/DL286/DL277</div><input class="budget-input" id="b-flights" value="5176.25" oninput="updateTotal()"></div>
-    <div class="budget-cell"><div class="budget-cat">&#128646; Trains (all legs)</div><div class="budget-est">Leg 1 booked &middot; 3 more to go</div><input class="budget-input" id="b-trains" value="55" oninput="updateTotal()"></div>
+    <div class="budget-cell"><div class="budget-cat">&#9992;&#65039; Flights</div><div class="budget-est">Delta round trip &middot; all 5</div><input class="budget-input" id="b-flights" value="5176.25" oninput="updateTotal()"></div>
+    <div class="budget-cell"><div class="budget-cat">&#128646; All Trains</div><div class="budget-est">6 legs &middot; all booked</div><input class="budget-input" id="b-trains" value="576.80" oninput="updateTotal()"></div>
     <div class="budget-cell"><div class="budget-cat">&#128676; Water Taxis (Venice)</div><div class="budget-est">40KHF + 84GQB</div><input class="budget-input" id="b-watertaxi" value="190" oninput="updateTotal()"></div>
     <div class="budget-cell"><div class="budget-cat">&#127968; Milan arrival (2 nights)</div><div class="budget-est">Otto Novembre, 3</div><input class="budget-input" id="b-milan" value="780.06" oninput="updateTotal()"></div>
     <div class="budget-cell"><div class="budget-cat">&#127968; Venice (3 nights)</div><div class="budget-est">San Marco View Terrace</div><input class="budget-input" id="b-venice" value="1450.34" oninput="updateTotal()"></div>
@@ -500,33 +548,35 @@
         <div class="check-item done" id="ci-flights"><input type="checkbox" id="cb-flights" checked onchange="toggleCheck('ci-flights','cb-flights')"><label for="cb-flights">Flights &#10003; Delta &middot; Conf: 40-936641835</label></div>
         <div class="check-item done" id="ci-mil-hotel"><input type="checkbox" id="cb-mil-hotel" checked onchange="toggleCheck('ci-mil-hotel','cb-mil-hotel')"><label for="cb-mil-hotel">Milan apartment (Jul 12&ndash;13) &#10003; Ref: KB1776194797</label></div>
         <div class="check-item done" id="ci-venice-hotel"><input type="checkbox" id="cb-venice-hotel" checked onchange="toggleCheck('ci-venice-hotel','cb-venice-hotel')"><label for="cb-venice-hotel">Venice apartment (Jul 14&ndash;16) &#10003; Ref: 31796038</label></div>
-        <div class="check-item done" id="ci-wt-arr"><input type="checkbox" id="cb-wt-arr" checked onchange="toggleCheck('ci-wt-arr','cb-wt-arr')"><label for="cb-wt-arr">Water taxi arrival Jul 14 &#10003; Ref: 40KHF &middot; 3:40 PM &middot; &euro;95</label></div>
-        <div class="check-item done" id="ci-wt-dep"><input type="checkbox" id="cb-wt-dep" checked onchange="toggleCheck('ci-wt-dep','cb-wt-dep')"><label for="cb-wt-dep">Water taxi departure Jul 17 &#10003; Ref: 84GQB &middot; 10:20 AM &middot; &euro;95</label></div>
+        <div class="check-item done" id="ci-wt-arr"><input type="checkbox" id="cb-wt-arr" checked onchange="toggleCheck('ci-wt-arr','cb-wt-arr')"><label for="cb-wt-arr">Water taxi arrival Jul 14 &#10003; Ref: 40KHF &middot; 3:40 PM</label></div>
+        <div class="check-item done" id="ci-wt-dep"><input type="checkbox" id="cb-wt-dep" checked onchange="toggleCheck('ci-wt-dep','cb-wt-dep')"><label for="cb-wt-dep">Water taxi departure Jul 17 &#10003; Ref: 84GQB &middot; 10:20 AM</label></div>
         <div class="check-item done" id="ci-ct-vrbo"><input type="checkbox" id="cb-ct-vrbo" checked onchange="toggleCheck('ci-ct-vrbo','cb-ct-vrbo')"><label for="cb-ct-vrbo">Cinque Terre (Jul 17&ndash;19) &#10003; Ref: HMMZAXART9 &middot; &#9888;&#65039; $1,339.17 due Jul 2</label></div>
         <div class="check-item done" id="ci-rome-vrbo"><input type="checkbox" id="cb-rome-vrbo" checked onchange="toggleCheck('ci-rome-vrbo','cb-rome-vrbo')"><label for="cb-rome-vrbo">Rome penthouse (Jul 20&ndash;21) &#10003; Trastevere &middot; &#9888;&#65039; $1,270 due Jul 7</label></div>
         <div class="check-item done" id="ci-mil2-hotel"><input type="checkbox" id="cb-mil2-hotel" checked onchange="toggleCheck('ci-mil2-hotel','cb-mil2-hotel')"><label for="cb-mil2-hotel">Milan return hotel (Jul 22) &#10003; Sheraton &middot; Conf: 77118774</label></div>
-        <div class="check-item done" id="ci-train1"><input type="checkbox" id="cb-train1" checked onchange="toggleCheck('ci-train1','cb-train1')"><label for="cb-train1">Train Milan &rarr; Venice Jul 14 &#10003; FR9727 &middot; Retrieval: 1795726057</label></div>
-        <div class="check-item" id="ci-train2"><input type="checkbox" id="cb-train2" onchange="toggleCheck('ci-train2','cb-train2')"><label for="cb-train2">Train Venice &rarr; La Spezia Jul 17</label></div>
-        <div class="check-item" id="ci-train3"><input type="checkbox" id="cb-train3" onchange="toggleCheck('ci-train3','cb-train3')"><label for="cb-train3">Train La Spezia &rarr; Rome Jul 20</label></div>
-        <div class="check-item" id="ci-train4"><input type="checkbox" id="cb-train4" onchange="toggleCheck('ci-train4','cb-train4')"><label for="cb-train4">Train Rome &rarr; Milan Jul 22</label></div>
-        <div class="check-item done" id="ci-concert"><input type="checkbox" id="cb-concert" checked onchange="toggleCheck('ci-concert','cb-concert')"><label for="cb-concert">Vulfpeck tickets &#10003; Milan Jul 13</label></div>
+        <div class="check-item done" id="ci-train1"><input type="checkbox" id="cb-train1" checked onchange="toggleCheck('ci-train1','cb-train1')"><label for="cb-train1">Train Leg 1: Milan &rarr; Venice Jul 14 &#10003; Retrieval: 1795726057</label></div>
+        <div class="check-item done" id="ci-train2"><input type="checkbox" id="cb-train2" checked onchange="toggleCheck('ci-train2','cb-train2')"><label for="cb-train2">Train Leg 2: Venice &rarr; La Spezia Jul 17 &#10003; Retrieval: 1802885358</label></div>
+        <div class="check-item done" id="ci-train3"><input type="checkbox" id="cb-train3" checked onchange="toggleCheck('ci-train3','cb-train3')"><label for="cb-train3">Train Leg 3: La Spezia &rarr; Monterosso Jul 17 &#10003; Retrieval: 1802894197</label></div>
+        <div class="check-item done" id="ci-train4"><input type="checkbox" id="cb-train4" checked onchange="toggleCheck('ci-train4','cb-train4')"><label for="cb-train4">Train Leg 4: Monterosso &rarr; La Spezia Jul 20 &#10003; Retrieval: 1802906114</label></div>
+        <div class="check-item done" id="ci-train5"><input type="checkbox" id="cb-train5" checked onchange="toggleCheck('ci-train5','cb-train5')"><label for="cb-train5">Train Leg 5: La Spezia &rarr; Rome Jul 20 &#10003; Retrieval: 1802914221</label></div>
+        <div class="check-item done" id="ci-train6"><input type="checkbox" id="cb-train6" checked onchange="toggleCheck('ci-train6','cb-train6')"><label for="cb-train6">Train Leg 6: Rome &rarr; Milan Jul 22 &#10003; Retrieval: 1802921095</label></div>
+        <div class="check-item done" id="ci-concert"><input type="checkbox" id="cb-concert" checked onchange="toggleCheck('ci-concert','cb-concert')"><label for="cb-concert">Vulfpeck tickets &#10003; Jul 13 &middot; 9:30 PM &middot; Nominative (bring ID)</label></div>
+        <div class="check-item done" id="ci-insurance"><input type="checkbox" id="cb-insurance" checked onchange="toggleCheck('ci-insurance','cb-insurance')"><label for="cb-insurance">Travel insurance &#10003; $595.05 total</label></div>
         <div class="check-item" id="ci-colosseum"><input type="checkbox" id="cb-colosseum" onchange="toggleCheck('ci-colosseum','cb-colosseum')"><label for="cb-colosseum">Colosseum family tour &mdash; book early!</label></div>
         <div class="check-item" id="ci-vatican"><input type="checkbox" id="cb-vatican" onchange="toggleCheck('ci-vatican','cb-vatican')"><label for="cb-vatican">Vatican family tour &mdash; book early!</label></div>
         <div class="check-item" id="ci-gladiator"><input type="checkbox" id="cb-gladiator" onchange="toggleCheck('ci-gladiator','cb-gladiator')"><label for="cb-gladiator">Gladiator School &mdash; Rome</label></div>
         <div class="check-item" id="ci-boat"><input type="checkbox" id="cb-boat" onchange="toggleCheck('ci-boat','cb-boat')"><label for="cb-boat">Cinque Terre boat tour + snorkeling</label></div>
         <div class="check-item" id="ci-pesto"><input type="checkbox" id="cb-pesto" onchange="toggleCheck('ci-pesto','cb-pesto')"><label for="cb-pesto">Pesto-making class &mdash; Cinque Terre</label></div>
-        <div class="check-item done" id="ci-insurance"><input type="checkbox" id="cb-insurance" checked onchange="toggleCheck('ci-insurance','cb-insurance')"><label for="cb-insurance">Travel insurance &#10003; $595.05 total</label></div>
       </div>
     </div>
     <div style="padding:20px 24px;">
       <div class="section-label" style="margin-bottom:14px;">&#127920; Before You Go</div>
       <div class="checklist">
-        <div class="check-item done" id="ci-passports"><input type="checkbox" id="cb-passports" checked onchange="toggleCheck('ci-passports','cb-passports')"><label for="cb-passports">All 5 passports valid &#10003; Dom, Lisa, Savannah, Desmond, Jonas</label></div>
-        <div class="check-item" id="ci-tsa"><input type="checkbox" id="cb-tsa" onchange="toggleCheck('ci-tsa','cb-tsa')"><label for="cb-tsa">Lisa &mdash; TSA PreCheck enrollment (~$78)</label></div>
-        <div class="check-item" id="ci-idp"><input type="checkbox" id="cb-idp" onchange="toggleCheck('ci-idp','cb-idp')"><label for="cb-idp">International Driving Permit &mdash; AAA &middot; ~$20 &middot; bring 2 passport photos</label></div>
-        <div class="check-item" id="ci-etias"><input type="checkbox" id="cb-etias" onchange="toggleCheck('ci-etias','cb-etias')"><label for="cb-etias">ETIAS &mdash; check status closer to July (launching Q4 2026)</label></div>
+        <div class="check-item done" id="ci-passports"><input type="checkbox" id="cb-passports" checked onchange="toggleCheck('ci-passports','cb-passports')"><label for="cb-passports">All 5 passports valid &#10003;</label></div>
+        <div class="check-item done" id="ci-tsa"><input type="checkbox" id="cb-tsa" checked onchange="toggleCheck('ci-tsa','cb-tsa')"><label for="cb-tsa">Lisa &mdash; TSA PreCheck &#10003;</label></div>
+        <div class="check-item done" id="ci-idp"><input type="checkbox" id="cb-idp" checked onchange="toggleCheck('ci-idp','cb-idp')"><label for="cb-idp">International Driving Permit &#10003;</label></div>
+        <div class="check-item" id="ci-etias"><input type="checkbox" id="cb-etias" onchange="toggleCheck('ci-etias','cb-etias')"><label for="cb-etias">ETIAS &mdash; check status closer to July</label></div>
         <div class="check-item done" id="ci-adapters"><input type="checkbox" id="cb-adapters" checked onchange="toggleCheck('ci-adapters','cb-adapters')"><label for="cb-adapters">European power adapters &#10003; Lisa has them</label></div>
-        <div class="check-item done" id="ci-smoke"><input type="checkbox" id="cb-smoke" checked onchange="toggleCheck('ci-smoke','cb-smoke')"><label for="cb-smoke">Portable smoke detector &#10003; needed for Rome (no alarm on property)</label></div>
+        <div class="check-item done" id="ci-smoke"><input type="checkbox" id="cb-smoke" checked onchange="toggleCheck('ci-smoke','cb-smoke')"><label for="cb-smoke">Portable smoke detector &#10003; needed for Rome</label></div>
         <div class="check-item" id="ci-notify-bank"><input type="checkbox" id="cb-notify-bank" onchange="toggleCheck('ci-notify-bank','cb-notify-bank')"><label for="cb-notify-bank">Notify bank/credit cards of travel dates</label></div>
         <div class="check-item" id="ci-beach-shoes"><input type="checkbox" id="cb-beach-shoes" onchange="toggleCheck('ci-beach-shoes','cb-beach-shoes')"><label for="cb-beach-shoes">Beach/water shoes for Cinque Terre (x5)</label></div>
         <div class="check-item" id="ci-meds"><input type="checkbox" id="cb-meds" onchange="toggleCheck('ci-meds','cb-meds')"><label for="cb-meds">Kids meds (Tylenol, Benadryl, Pepto, Dramamine)</label></div>
@@ -534,9 +584,21 @@
         <div class="check-item" id="ci-validate"><input type="checkbox" id="cb-validate" onchange="toggleCheck('ci-validate','cb-validate')"><label for="cb-validate">Remember: validate train tickets before boarding</label></div>
         <div class="check-item" id="ci-ct-card"><input type="checkbox" id="cb-ct-card" onchange="toggleCheck('ci-ct-card','cb-ct-card')"><label for="cb-ct-card">Buy Cinque Terre Card at La Spezia on arrival</label></div>
         <div class="check-item" id="ci-cash"><input type="checkbox" id="cb-cash" onchange="toggleCheck('ci-cash','cb-cash')"><label for="cb-cash">Bring some euro cash for small towns + tips</label></div>
-        <div class="check-item" id="ci-duolingo"><input type="checkbox" id="cb-duolingo" onchange="toggleCheck('ci-duolingo','cb-duolingo')"><label for="cb-duolingo">Learn 10 Italian phrases (Grazie, Dov'&egrave;, etc.)</label></div>
+        <div class="check-item" id="ci-duolingo"><input type="checkbox" id="cb-duolingo" onchange="toggleCheck('ci-duolingo','cb-duolingo')"><label for="cb-duolingo">Learn 10 Italian phrases</label></div>
       </div>
     </div>
+  </div>
+</div>
+</section>
+<section id="emergency">
+<div class="budget-section">
+  <div class="budget-header"><h2>&#128663; Emergency Car Rentals</h2></div>
+  <div style="padding:14px 24px 4px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border);">If you miss a train, here's where to go in each city to rent a car as a backup. Note: Venice cars must be picked up at Piazzale Roma &mdash; you cannot drive into Venice itself.</div>
+  <div class="car-rental-grid">
+    <div class="car-rental-card"><div class="car-rental-city">&#127968; Milan &mdash; Milano Centrale</div><div class="car-rental-name">Sixt</div><div class="car-rental-addr">Piazza Duca d'Aosta, 1 &middot; Right at the station</div><div class="car-rental-phone"><a href="tel:+390295477979" style="color:var(--venice);">+39 02 9475 7979</a></div></div>
+    <div class="car-rental-card"><div class="car-rental-city">&#128676; Venice &mdash; Piazzale Roma</div><div class="car-rental-name">Europcar</div><div class="car-rental-addr">Piazzale Roma, 496 &middot; End of the road into Venice</div><div class="car-rental-phone"><a href="tel:+390415238616" style="color:var(--venice);">+39 041 523 8616</a></div></div>
+    <div class="car-rental-card"><div class="car-rental-city">&#127957;&#65039; La Spezia &mdash; Cinque Terre</div><div class="car-rental-name">Europcar</div><div class="car-rental-addr">Viale S. Bartolomeo, 457 &middot; Short cab from station</div><div class="car-rental-phone"><a href="tel:+390187590247" style="color:var(--venice);">+39 0187 590247</a></div></div>
+    <div class="car-rental-card"><div class="car-rental-city">&#127981; Rome &mdash; Roma Termini</div><div class="car-rental-name">Hertz</div><div class="car-rental-addr">Via Giovanni Giolitti 16 &middot; Right at Termini</div><div class="car-rental-phone"><a href="tel:+390648839671" style="color:var(--venice);">+39 06 488 3967</a></div></div>
   </div>
 </div>
 </section>
@@ -544,12 +606,12 @@
   <div class="summary-bar">
     <div class="sum-cell"><div class="sum-num" style="color:var(--milan);">11</div><div class="sum-label">Nights total</div></div>
     <div class="sum-cell"><div class="sum-num" style="color:var(--venice);">4</div><div class="sum-label">Cities</div></div>
-    <div class="sum-cell"><div class="sum-num" style="color:var(--ct);">4</div><div class="sum-label">Train legs</div></div>
+    <div class="sum-cell"><div class="sum-num" style="color:var(--ct);">6</div><div class="sum-label">Train legs</div></div>
     <div class="sum-cell"><div class="sum-num" style="color:var(--rome);">5</div><div class="sum-label">Travelers</div></div>
     <div class="sum-cell"><div class="sum-num" style="color:var(--gold);">Jul 12&ndash;22</div><div class="sum-label">In Italy</div></div>
   </div>
 </div>
-<div style="max-width:960px;margin:0 20px 20px;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--white);">
+<div style="margin:0 20px 20px;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--white);">
   <div style="background:var(--ink);color:var(--white);padding:14px 24px;">
     <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;">&#128190; Save &amp; Restore Your Data</div>
     <div style="font-size:11px;opacity:0.6;margin-top:2px;">Export to back up or share. Import to restore on any device.</div>
@@ -560,7 +622,7 @@
     <span id="import-status" style="font-size:12px;color:var(--ct);display:none;font-weight:500;">&#10003; Imported!</span>
   </div>
 </div>
-<footer class="site-footer"><strong>Italy 2026 &mdash; Family Trip Planner</strong><br><span style="margin-top:6px;display:block;">&#127470;&#127481; Buon viaggio, Ciampa family!</span></footer>
+<footer class="site-footer"><strong>Italy 2026 &mdash; Family Trip Planner</strong><br><span style="margin-top:6px;display:block;">&#127470;&#127481; Buon viaggio, Ciampa family! All trains booked. Let's go.</span></footer>
 <script>
 function showTab(id,btn){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.panel-tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');if(btn)btn.classList.add('active');}
 function toggleEdit(prefix){const el=document.getElementById('accom-edit-'+prefix);el.style.display=el.style.display==='block'?'none':'block';}
