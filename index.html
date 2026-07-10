@@ -6,6 +6,14 @@
 <title>Italy 2026 — Family Trip Planner</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  #password-screen { position:fixed; inset:0; background:#1C1917; display:flex; align-items:center; justify-content:center; z-index:9999; flex-direction:column; gap:16px; }
+  #password-screen h2 { font-family:'Playfair Display',serif; color:#F8F4EE; font-size:1.6rem; font-weight:400; }
+  #password-screen p { color:rgba(255,255,255,0.5); font-size:13px; font-family:'DM Sans',sans-serif; }
+  #password-screen input { padding:12px 20px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:white; font-size:16px; text-align:center; letter-spacing:0.1em; width:220px; outline:none; font-family:'DM Sans',sans-serif; }
+  #password-screen button { padding:10px 28px; background:#C9A84C; color:#1C1917; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; }
+  #password-screen .error { color:#ff6b6b; font-size:12px; font-family:'DM Sans',sans-serif; display:none; }
+  #main-content { display:none; }
+</style>
   :root { --cream:#F8F4EE; --ink:#1C1917; --muted:#78716C; --border:#E7E0D8; --milan:#5B4E8A; --venice:#1A6B9A; --ct:#1A7A52; --rome:#A03A2A; --gold:#C9A84C; --white:#FFFFFF; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--ink); line-height:1.6; }
@@ -116,6 +124,16 @@
 </style>
 </head>
 <body>
+
+<div id="password-screen">
+  <h2>🇮🇹 Ciampa Italy 2026</h2>
+  <p>Enter password to continue</p>
+  <input type="password" id="pw-input" placeholder="password" onkeydown="if(event.key==='Enter')checkPw()">
+  <button onclick="checkPw()">Enter</button>
+  <div class="error" id="pw-error">Incorrect password. Try again.</div>
+</div>
+
+<div id="main-content">
 <header class="site-header">
   <div class="site-header-inner">
     <p>Family Trip Planner</p>
@@ -344,7 +362,7 @@ Insurance: Generali Policy 26133Z7719 &middot; $155.51
   </div>
   <div style="margin:0;padding:16px 24px;background:#EAF4FB;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
     <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128273; Key Collection</div><div style="font-size:13px;font-weight:500;">Views on Venice s.r.l.</div><div style="font-size:12px;color:var(--muted);">San Marco 2669/A, Venice</div><div style="font-size:12px;color:var(--muted);">Check-in: 3:00&ndash;8:00 PM &middot; Out: 11:00 AM</div></div>
-    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128222; Host</div><div style="font-size:13px;font-weight:500;">+39 041 241 1149</div><div style="font-size:12px;color:var(--muted);">Emergency: +39 348 518 7068</div><div style="font-size:12px;color:var(--muted);">info@viewsonvenice.com</div></div>
+    <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128222; Host</div><div style="font-size:13px;font-weight:500;">+39 041 241 1149</div><div style="font-size:12px;color:var(--muted);">Emergency: +39 348 518 7068</div><div style="font-size:12px;color:var(--muted);">info@viewsonvenice.com</div><div style="margin-top:6px;font-size:12px;background:#FFF9F0;border-radius:6px;padding:6px 8px;border:1px solid #F0DFC0;"><strong>&#128222; Call Luca on arrival:</strong> <a href="tel:+393493309368" style="color:var(--milan);">+39 349 330 9368</a><br><span style="color:var(--muted);">Views on Venice rep &middot; will meet you at Calle del Dose</span></div></div>
     <div><div style="font-size:10px;font-weight:500;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">&#128203; Booking</div><div style="font-size:13px;font-weight:500;">VRBO #10081683ha</div><div style="font-size:12px;color:var(--muted);">&euro;1,827.14 &middot; 3 bed/3 bath &middot; Premier Host &#10025;&#10025;&#10025;</div><div style="font-size:12px;color:#A03A2A;font-weight:500;margin-top:4px;">&#9888;&#65039; Free cancel until Jun 14</div></div>
   </div>
   <div style="margin:0;padding:14px 24px;background:#E0F0FA;border-bottom:1px solid var(--border);">
@@ -898,5 +916,20 @@ window.addEventListener('load',updateTotal);
 
 // ============================================================
 </script>
+</div><!-- end main-content -->
+
+<script>
+function checkPw() {
+  var pw = document.getElementById('pw-input').value;
+  if (pw === '10mendon') {
+    document.getElementById('password-screen').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+  } else {
+    document.getElementById('pw-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+  }
+}
+</script>
+
 </body>
 </html>
